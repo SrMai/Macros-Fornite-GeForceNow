@@ -79,7 +79,7 @@ def pulsa(tecla):
     if tecla == kb.KeyCode.from_char('x'):
         print("Se ha construido Suelo x")
         print("Se ha activado tecla Suelo Infinitamente, para cancelar use Ctrl+C")
-        sub.call('bash Macro/macroSuelo.sh', shell=True)
+        sub.call('bash Macro/macroSulo.sh', shell=True)
         print("Termino Tarea")
         sub.call('python3 retorno.py', shell=True)
         sys.exit()
@@ -89,81 +89,57 @@ def pulsa(tecla):
         print("Se ha activado tecla Pared Infinitamente, para cancelar use Ctrl+C")
         sub.call('bash Macro/macroPared.sh', shell=True)
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
         SePuede = 1
     elif tecla == kb.KeyCode.from_char('v'):
         print("Se ha construido Techo v")
         print("Se ha activado tecla Techo Infinitamente, para cancelar use Ctrl+Cq")
         sub.call('bash Macro/macroTecho.sh', shell=True)
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
         SePuede = 1
     elif tecla == kb.KeyCode.from_char('c'):
         print("Se ha construido Escalera c")
         print("Se ha activado tecla Escalera Infinitamente, para cancelar use Ctrl+C")
         sub.call('bash Macro/macroEscalera.sh', shell=True)
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
         SePuede = 1
-    elif tecla == kb.KeyCode.from_char('e'):
-        print("Se ha construido Combo E")
-        print("Se ha activado tecla Com, para cancelar use Ctrl+C")
-        sub.call('bash Macro/macroCombo.sh', shell=True)
+    elif tecla == kb.KeyCode.from_char('p'):
+        print("Se ha activado tecla Usar Infinitamente, para cancelar use Ctrl+C")
+        sub.call('bash Macro/macroUsar.sh', shell=True)
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
         SePuede = 1
-    elif tecla == kb.KeyCode.from_char('g'):
-        print("Se ha editado pared g")
-        print("Se ha activado tecla editado pared, para cancelar use Ctrl+C")
-        sub.call('bash Macro/macroEditarPared.sh', shell=True)
+    elif tecla == kb.KeyCode.from_char('d'):
+        print("Se activo la opción Desbug")
+        sys.exit()
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
         SePuede = 1
     elif tecla == kb.KeyCode.from_char('X'):
         print("Se ha construido Suelo X")
         print("Se ha activado tecla Suelo Infinitamente, para cancelar use Ctrl+C")
         sub.call('bash Macro/macroSuelo.sh', shell=True)
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
         SePuede = 1
     elif tecla == kb.KeyCode.from_char('Z'):
         print("Se ha construido Pared Z")
         print("Se ha activado tecla Pared Infinitamente, para cancelar use Ctrl+C")
         sub.call('bash Macro/macroPared.sh', shell=True)
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
         SePuede = 1
     elif tecla == kb.KeyCode.from_char('V'):
         print("Se ha construido Techo V")
         print("Se ha activado tecla Techo Infinitamente, para cancelar use Ctrl+C")
         sub.call('bash Macro/macroTecho.sh', shell=True)
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
         SePuede = 1
     elif tecla == kb.KeyCode.from_char('C'):
         print("Se ha construido Escalera C")
         print("Se ha activado tecla Escalera Infinitamente, para cancelar use Ctrl+C")
         sub.call('bash Macro/macroEscalera.sh', shell=True)
-        print("TerminTarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
-    elif tecla == kb.KeyCode.from_char('E'):
-        print("Se ha construido Combo E")
-        print("Se ha activado tecla Com, para cancelar use Ctrl+C")
-        sub.call('bash Macro/macroCombo.sh', shell=True)
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
         SePuede = 1
-    elif tecla == kb.KeyCode.from_char('G'):
-        print("Se ha editado pared G")
-        print("Se ha activado tecla editado pared, para cancelar use Ctrl+C")
-        sub.call('bash Macro/macroEditarPared.sh', shell=True)
+    elif tecla == kb.KeyCode.from_char('P'):
+        print("Se ha activado tecla Usar Infinitamente, para cancelar use Ctrl+C")
+        sub.call('bash Macro/macroUsar.sh', shell=True)
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
-    elif tecla == kb.KeyCode.from_char('*'):
-        print("Termino Tarea")
-        Pausa()
         SePuede = 1
     
 def VerTeclas():
@@ -175,10 +151,8 @@ def VerTeclas():
     print(TeclaTecho)
     print("Tecla Escalera:")
     print(TeclaEscalera)
-    print("Tecla Combo:")
-    print("E")
-    print("Tecla Editar:")
-    print("g")
+    print("Tecla Usar Infinitamente:")
+    print("P")
     if SePuede == 1:
         with kb.Listener(pulsa) as escuchador:
             escuchador.join()
@@ -196,23 +170,8 @@ def VerTeclas():
     #    sub.call('clear', shell=True)
     #    VerMenu()
 
-def Pulsa(Tecla):
-    SePuede = 0
-    if Tecla == kb.KeyCode.from_char('*'):
-        sub.call('bash Macro/macroBackspace.sh', shell=True)
-        VerTeclas()
-    elif Tecla == kb.KeyCode.from_char('/'):
-        Salir()
-        
-def Pausa():
-    sub.call('clear', shell=True)
-    with kb.Listener(Pulsa) as escuchador:
-        escuchador.join()
-
 def Salir():
     sub.call('clear', shell=True)
     sub.call('exit', shell=True)
-    print("Se Desactivo El Programa")
-    sys.exit()
     
-VerTeclas()
+VerMenu()
