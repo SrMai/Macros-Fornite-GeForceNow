@@ -1,8 +1,14 @@
 import subprocess as sub
 import sys
+import keyboard
 from time import sleep
 from pynput import keyboard as kb
+from pynput.mouse import Button, Controller
 
+
+#Variables pynput
+mouse = Controller()
+#Variables teclas
 TeclaPared = "c";
 TeclaSuelo = "x";
 TeclaTecho = "v";
@@ -76,111 +82,117 @@ def RestablecerTeclas():
         VerMenu()
 
 def ConstruirSuelo():
-    sub.call('xdotool key x', shell=True)
-    sub.call('xdotool click 1', shell=True)
-    sub.call('xdotool click 1', shell=True)
-    sub.call('xdotool key q', shell=True)
+    keyboard.press_and_release('x') 
+    mouse.press(Button.left)
+    mouse.release(Button.left)
+    keyboard.press_and_release('q') 
 
 def ConstruirPared():
-    sub.call('xdotool key z', shell=True)
-    sub.call('xdotool click 1', shell=True)
-    sub.call('xdotool click 1', shell=True)
-    sub.call('xdotool key q', shell=True)
-
+    keyboard.press_and_release('z') 
+    mouse.press(Button.left)
+    mouse.release(Button.left)
+    keyboard.press_and_release('q') 
+    
 def ConstruirTecho():
-    sub.call('xdotool key v', shell=True)
-    sub.call('xdotool click 1', shell=True)
-    sub.call('xdotool click 1', shell=True)
-    sub.call('xdotool key q', shell=True)
+    keyboard.press_and_release('v') 
+    mouse.press(Button.left)
+    mouse.release(Button.left)
+    keyboard.press_and_release('q') 
 
 def ConstruirEscalera():
-    sub.call('xdotool key c', shell=True)
-    sub.call('xdotool click 1', shell=True)
-    sub.call('xdotool click 1', shell=True)
-    sub.call('xdotool key q', shell=True)
+    keyboard.press_and_release('c') 
+    mouse.press(Button.left)
+    mouse.release(Button.left)
+    keyboard.press_and_release('q') 
+    
+def EditarPared():
+    keyboard.press_and_release('u')
+    mouse.release(Button.left)
+    keyboard.press_and_release('u') 
+    
+def MacroCombo():
+    keyboard.press_and_release('x') 
+    mouse.press(Button.left)
+    mouse.release(Button.left)
+    keyboard.press_and_release('z') 
+    mouse.press(Button.left)
+    mouse.release(Button.left)
+    keyboard.press_and_release('c') 
+    mouse.press(Button.left)
+    mouse.release(Button.left)
+    keyboard.press_and_release('q')
+    
 
 def pulsa(tecla):
-    SePuede = 0
     if tecla == kb.KeyCode.from_char('x'):
         print("Se ha construido Suelo x")
         ConstruirSuelo()
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
+        VerTeclas()
         sys.exit()
-        SePuede = 1
     elif tecla == kb.KeyCode.from_char('z'):
         print("Se ha construido Pared z")
         ConstruirPared()
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
+        VerTeclas()
     elif tecla == kb.KeyCode.from_char('v'):
         print("Se ha construido Techo v")
         ConstruirTecho()
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
+        VerTeclas()
     elif tecla == kb.KeyCode.from_char('c'):
         print("Se ha construido Escalera c")
         ConstruirEscalera()
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
+        VerTeclas()
     elif tecla == kb.KeyCode.from_char('e'):
         print("Se ha construido Combo E")
-        sub.call('bash Macro/macroCombo.sh', shell=True)
+        MacroCombo()
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
+        VerTeclas()
     elif tecla == kb.KeyCode.from_char('g'):
         print("Se ha editado pared g")
-        sub.call('bash Macro/macroEditarPared.sh', shell=True)
+        EditarPared()
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
+        VerTeclas()
     elif tecla == kb.KeyCode.from_char('X'):
         print("Se ha construido Suelo X")
         ConstruirSuelo()
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
+        VerTeclas()
     elif tecla == kb.KeyCode.from_char('Z'):
         print("Se ha construido Pared Z")
         ConstruirPared()
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
+        VerTeclas()
     elif tecla == kb.KeyCode.from_char('V'):
         print("Se ha construido Techo V")
         ConstruirTecho()
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
+        VerTeclas()
     elif tecla == kb.KeyCode.from_char('C'):
         print("Se ha construido Escalera C")
         ConstruirEscalera()
-        print("TerminTarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
+        print("Termino Tarea")
+        VerTeclas()
     elif tecla == kb.KeyCode.from_char('E'):
         print("Se ha construido Combo E")
-        sub.call('bash Macro/macroCombo.sh', shell=True)
+        MacroCombo()
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
+        VerTeclas()
     elif tecla == kb.KeyCode.from_char('G'):
         print("Se ha editado pared G")
-        sub.call('bash Macro/macroEditarPared.sh', shell=True)
+        EditarPared()
         print("Termino Tarea")
-        sub.call('python3 retorno.py', shell=True)
-        SePuede = 1
+        VerTeclas()
     elif tecla == kb.KeyCode.from_char('*'):
         print("Termino Tarea")
         Pausa()
-        SePuede = 1
-    
+
 def VerTeclas():
-    sub.call("clear")
+    keyboard.press_and_release('backspace')
+    sub.call('clear', shell=True)
+    keyboard.press_and_release('backspace')
     print("Tecla Pared:" + TeclaPared)
     print("Tecla Suelo:" + TeclaSuelo)
     print("Tecla Techo:" + TeclaTecho)
@@ -205,9 +217,8 @@ def VerTeclas():
     #    VerMenu()
 
 def Pulsa(Tecla):
-    SePuede = 0
     if Tecla == kb.KeyCode.from_char('*'):
-        sub.call('bash Macro/macroBackspace.sh', shell=True)
+        keyboard.press_and_release('backspace')
         VerTeclas()
     elif Tecla == kb.KeyCode.from_char('/'):
         Salir()
