@@ -81,45 +81,76 @@ def RestablecerTeclas():
         sub.call('clear', shell=True)
         VerMenu()
 
+def pulsaClickInfinito(tecla):
+    	print('Se ha pulsado la tecla ' + str(tecla))
+
+def suelta(tecla):
+	print('Se ha soltado la tecla ' + str(tecla))
+	if tecla == kb.KeyCode.from_char('q'):
+		VerTeclas()
+
 def ConstruirSuelo():
-    keyboard.press_and_release('x') 
-    mouse.press(Button.left)
-    mouse.release(Button.left)
-    keyboard.press_and_release('q') 
+    Bloqueo = 1
+    while Bloqueo > 0:
+        mouse.press(Button.left)
+        mouse.release(Button.left)
+        mouse.press(Button.left)
+        mouse.release(Button.left)
+        mouse.press(Button.left)
+        mouse.release(Button.left)
+        mouse.press(Button.left)
+        mouse.release(Button.left)
+        sleep(0.1)
+        Bloqueo = Bloqueo+1
+        print(Bloqueo)
+        escuchador = kb.Listener(pulsaClickInfinito, suelta)
+        escuchador.start()
+    
 
 def ConstruirPared():
     keyboard.press_and_release('z') 
+    sleep(0.4)
     mouse.press(Button.left)
     mouse.release(Button.left)
+    sleep(0.4)
     keyboard.press_and_release('q') 
     
 def ConstruirTecho():
     keyboard.press_and_release('v') 
+    sleep(0.4)
     mouse.press(Button.left)
     mouse.release(Button.left)
+    sleep(0.4)
     keyboard.press_and_release('q') 
 
 def ConstruirEscalera():
     keyboard.press_and_release('c') 
+    sleep(0.4)
     mouse.press(Button.left)
     mouse.release(Button.left)
+    sleep(0.4)
     keyboard.press_and_release('q') 
     
 def EditarPared():
     keyboard.press_and_release('u')
+    sleep(0.4)
     mouse.release(Button.left)
+    sleep(0.4)
     keyboard.press_and_release('u') 
+    sleep(3)
+    mouse.release(Button.left)
     
 def MacroCombo():
     keyboard.press_and_release('x') 
+    sleep(0.4)
     mouse.press(Button.left)
     mouse.release(Button.left)
-    keyboard.press_and_release('z') 
-    mouse.press(Button.left)
-    mouse.release(Button.left)
+    sleep(0.4)
+    sleep(0.4)
     keyboard.press_and_release('c') 
     mouse.press(Button.left)
     mouse.release(Button.left)
+    sleep(0.4)
     keyboard.press_and_release('q')
     
 
@@ -221,6 +252,8 @@ def Pulsa(Tecla):
         keyboard.press_and_release('backspace')
         VerTeclas()
     elif Tecla == kb.KeyCode.from_char('/'):
+        Bloqueo = 0
+        
         Salir()
         
 def Pausa():
